@@ -1,6 +1,6 @@
 # MythoMax-L2-13B Ollama for Railway
 
-Deploy God-Tier AI Model "thebloke/mythomax-l2-13b" ด้วย Railway
+Deploy God-Tier AI Model "TheBloke/MythoMax-L2-13B-GGUF" ด้วย Railway
 
 ## Deploy
 
@@ -13,7 +13,7 @@ Deploy God-Tier AI Model "thebloke/mythomax-l2-13b" ด้วย Railway
 import requests
 url = "https://<your-app-name>.up.railway.app/api/generate"
 payload = {
-    "model": "mythomax-l2-13b",
+    "model": "TheBloke/MythoMax-L2-13B-GGUF",
     "prompt": "Give me a God-Tier Agentic AI example.",
     "stream": False
 }
