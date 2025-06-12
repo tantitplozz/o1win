@@ -1,0 +1,105 @@
+services:
+  # Redis สำหรับการแคชและการจัดการคิว
+  redis:
+    image: redis:alpine
+    container_name: openhands_redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # PostgreSQL สำหรับการเก็บข้อมูล
+  postgres:
+    image: postgres:14-alpine
+    container_name: openhands_postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=openhandspassword
+      - POSTGRES_USER=openhands
+      - POSTGRES_DB=openhands
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U openhands']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # ไม่สร้าง service ollama เอง แต่จะใช้ ollama ที่มีอยู่แล้วในระบบ
+  # (omnihands_ollama) และกำหนดในส่วน environment ของ openhands
+
+  openhands:
+    image: docker.all-hands.dev/all-hands-ai/openhands:0.40
+    container_name: my-openhands-app
+    pull_policy: always
+    ports:
+      - '3001:3000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - openhands_state:/.openhands-state
+      - D:/openhandsbywin/workspace:/workspace:rw
+      - ./custom-config:/app/public/custom:ro
+      - ./config.toml:/app/config.toml:ro
+      - ./custom_mcp:/app/custom_mcp:ro
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      # พื้นฐาน
+      - SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.40-nikolaik
+      - LOG_ALL_EVENTS=true
+      - ENABLE_AGENT_TRACE=false
+      - PERSIST_DATA=true
+      - CONFIG_FILE=/app/config.toml
+      - LOG_LEVEL=INFO
+
+      # การตั้งค่าภาษาไทย (ยังคงเป็น OpenHands title เดิมเพื่อลดตัวแปร)
+      - DEFAULT_LOCALE=th
+      - AVAILABLE_LOCALES=en,th
+      - CUSTOM_CSS=/custom/thai-fonts.css
+      - CUSTOM_LOCALES_DIR=/custom
+      - APP_TITLE=OpenHands AI (ภาษาไทย)
+      - ENABLE_WELCOME_SCREEN=true
+      - WELCOME_SCREEN_TITLE=ยินดีต้อนรับสู่ OpenHands AI
+      - WELCOME_SCREEN_SUBTITLE=ผู้ช่วย AI แบบครบวงจรสำหรับการพัฒนาซอฟต์แวร์
+      - PLACEHOLDER_TEXT=พิมพ์คำถามหรือคำสั่งที่นี่...
+
+      # การเชื่อมต่อกับ Redis และ PostgreSQL
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://openhands:openhandspassword@postgres:5432/openhands
+
+      # การตั้งค่า Authentication
+      - ENABLE_AUTH=false
+
+      # การตั้งค่า Web Browser ในแซนด์บ็อกซ์
+      - ENABLE_BROWSER=true
+      - ENABLE_MULTIMODAL=true
+
+      # การตั้งค่าการใช้งาน Tools
+      - ENABLE_ALL_TOOLS=true
+      - ENABLE_FILE_SEARCH=true
+      - ENABLE_WEB_SEARCH=true
+
+      # การตั้งค่าประสิทธิภาพ
+      - MAX_CONCURRENT_SANDBOXES=3
+      - SANDBOX_MEMORY_LIMIT=6g
+      - SANDBOX_CPU_LIMIT=3
+
+      # การตั้งค่าเสริม
+      - NODE_ENV=production
+      - MAX_REQUEST_SIZE=50mb
+    restart: unless-stopped
+
+volumes:
+  openhands_state:
+  redis_data:
+  postgres_data:

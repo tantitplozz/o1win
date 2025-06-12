@@ -1,0 +1,136 @@
+/* CSS สำหรับซ่อน VS Code และแสดง Cursor อย่างเข้มงวด */
+
+/* ซ่อน VS Code เสมอ - ใช้ตัวเลือกทั้งหมดที่เป็นไปได้ */
+[data-tab='vscode'],
+[data-value='vscode'],
+[title*='VS Code'],
+[aria-label*='VS Code'],
+div[data-tab='vscode'],
+button[data-tab='vscode'],
+li[data-tab='vscode'],
+span[data-tab='vscode'],
+a[data-tab='vscode'],
+[class*='vscode'],
+[id*='vscode'],
+iframe[src*='vscode'],
+iframe[title*='VS Code'],
+iframe[class*='vscode'],
+div[data-editor='vscode'],
+div[data-editor-type='vscode'] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+  transform: scale(0) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(100%) !important;
+}
+
+/* ซ่อนปุ่มหรือแท็บที่มีข้อความ VS Code */
+button:has(> span:contains('VS Code')),
+div:has(> span:contains('VS Code')),
+li:has(> span:contains('VS Code')),
+a:has(> span:contains('VS Code')),
+*:has(> div:contains('VS Code')) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ซ่อนองค์ประกอบอื่นๆ ที่เกี่ยวข้องกับ VS Code */
+.vscode-container,
+.vs-code-container,
+.vscode-panel,
+.vscode-tab,
+.vscode-editor,
+.vscode-wrapper,
+.vscode-view,
+.vs-code,
+.vs-code-editor,
+.vs-code-panel,
+.vs-code-tab,
+.vs-code-view {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* แสดง Cursor เสมอ */
+[data-tab='cursor'],
+[data-value='cursor'],
+[title*='Cursor'],
+[data-custom-tab='true'],
+div[data-editor='cursor'],
+div[data-editor-type='cursor'],
+.cursor-container,
+.cursor-tab,
+.cursor-editor,
+.cursor-wrapper,
+.cursor-panel,
+.cursor-view {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1000 !important;
+  height: auto !important;
+  width: auto !important;
+  pointer-events: auto !important;
+  background-color: #1f1fcf !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* กำหนดสไตล์เพิ่มเติมสำหรับ Cursor */
+button[data-tab='cursor'],
+[role='tab'][data-tab='cursor'],
+[data-custom-tab='true'] {
+  background-color: #1f1fcf !important;
+  color: white !important;
+  font-weight: bold !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  margin: 4px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* แทนที่ VS Code ด้วย Cursor ในองค์ประกอบที่มีสถานะ active */
+[aria-selected='true'][data-tab='vscode'] {
+  display: none !important;
+}
+
+[aria-selected='true'][data-tab='cursor'] {
+  display: flex !important;
+  background-color: #1f1fcf !important;
+  color: white !important;
+}
+
+/* บังคับให้ container ของ Cursor แสดงผล */
+div[data-editor='cursor'] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ปิดการใช้งาน CSS ที่อาจจะซ่อน Cursor */
+[style*='display: none'][data-tab='cursor'],
+[style*='visibility: hidden'][data-tab='cursor'],
+[style*='opacity: 0'][data-tab='cursor'] {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

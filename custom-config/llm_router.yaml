@@ -1,0 +1,37 @@
+llm_router:
+  dolphin24b:
+    type: remote
+    name: dolphin24b
+    url: http://173.208.162.7:11434/api/chat
+    method: POST
+    headers:
+      Authorization: Bearer DOLPHIN24B_GOD_KEY_2025
+      Content-Type: application/json
+    body_format: openai
+    model: dolphin-mistral-24b-venice-edition-i1
+
+  yi_model:
+    type: remote
+    name: yi
+    url: http://204.12.253.251:11434/api/generate
+    method: POST
+    auth:
+      type: basic
+      username: yourusername
+      password: APIkey123456
+    body_format: raw_json
+    payload_template:
+      model: "yi"
+      prompt: "${prompt}"
+      stream: false
+
+  mythomax_local:
+    type: local
+    name: mythomax
+    url: http://localhost:11434/api/generate
+    method: POST
+    body_format: ollama
+    payload_template:
+      model: "mythomax-l2-13b-gguf"
+      prompt: "${prompt}"
+      stream: false 

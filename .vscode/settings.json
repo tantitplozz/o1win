@@ -1,0 +1,293 @@
+{
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 0,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "editor.linkedEditing": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.eol": "\n",
+  "editor.minimap.enabled": true,
+  "editor.rulers": [88, 100, 120],
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.closeOnFileDelete": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "security.workspace.trust.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.promptForLocalFileProtocolHandling": false,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:PATH};${workspaceFolder}/node_modules/.bin"
+  },
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": { "source": "Git Bash" }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.copyOnSelection": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.showExecutionMessage": false,
+  "code-runner.executorMap": {
+    "javascript": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app node:latest node \"${fileBasename}\"",
+    "python": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app python:latest python3 \"${fileBasename}\"",
+    "typescript": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app node:latest npx ts-node \"${fileBasename}\"",
+    "go": "docker run --rm -v \"${fileDirname}\":/usr/src/go/src/app -w /usr/src/go/src/app golang:latest go run \"${fileBasename}\"",
+    "java": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app openjdk:latest java \"${fileBasename}\"",
+    "php": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app php:latest php \"${fileBasename}\"",
+    "rust": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app rust:latest sh -c \"rustc ${fileBasename} && ./${fileBasenameNoExtension}\"",
+    "c": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app gcc:latest sh -c \"gcc ${fileBasename} -o ${fileBasenameNoExtension} && ./${fileBasenameNoExtension}\"",
+    "cpp": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app gcc:latest sh -c \"g++ ${fileBasename} -o ${fileBasenameNoExtension} && ./${fileBasenameNoExtension}\""
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.pylint": "explicit",
+    "source.fixAll.prettier": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.markdownlint": "explicit"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.pylint": "explicit"
+    }
+  },
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.fixAll": ["source.unusedImports"],
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintArgs": [
+    "--disable=C0114",
+    "--disable=C0115",
+    "--disable=C0116",
+    "--disable=R0903",
+    "--disable=W0511",
+    "--max-line-length=88"
+  ],
+  "python.sortImports.args": ["--profile", "black"],
+  "python.formatting.provider": "none",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.autoTestDiscoverOnSaveEnabled": "all",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports": "explicit" }
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.formatOnSave": true
+  },
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always",
+  "prettier.requireConfig": false,
+  "prettier.ignorePath": ".gitignore",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "git.pruneOnFetch": true,
+  "git.postCommitCommand": "sync",
+  "git.ignoreLimitWarning": true,
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile",
+  "breadcrumbs.enabled": true,
+  "workbench.commandPalette.history": 50,
+  "workbench.list.automaticKeyboardNavigation": true,
+  "workbench.tree.indent": 10,
+  "explorer.autoReveal": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.venv": true,
+    "**/.tox": true,
+    "**/*.egg-info": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/*.pyc": true,
+    "**/__pycache__": true,
+    "**/.idea": true,
+    "**/.vscode": false
+  },
+  "extensions.autoUpdate": true,
+  "extensions.autoCheckUpdates": true,
+  "extensions.ignoreRecommendations": false,
+  "docker.explorerRefreshInterval": 5000,
+  "docker.truncateLongIds": false,
+  "cursor.codeLens.references": true,
+  "cursor.codeLens.vcs": true,
+  "cursor.autoShowSingleOccurrenceHighlights": true,
+  "cursor.chat.autoScroll": true,
+  "cursor.features.autoEnable": {
+    "debug": true,
+    "sourceControl": true,
+    "terminal": true
+  },
+  "cursor.statusBar.enabled": true,
+  "cursor.experimental.autoEnableLineHighlights": true,
+  "tabnine.experimentalAutoImports": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "vsintellicode.features.python.deepLearning": "enabled",
+  "redhat.telemetry.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "github.copilot.advanced": {},
+  "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "accessibility.signals.terminalBell": {
+    "sound": "off"
+  },
+  "terminal.integrated.enableVisualBell": false,
+  "cursor.general.globalCursorIgnoreList": [],
+  "cursorLLM.provider": "dispatcher",
+  "cursorLLM.providers": {
+    "gemini": {
+      "apiKey": "AIzaSyCObpb_dJXNltEBRgMnvNLeYB9cfDcr710",
+      "models": ["gemini-2.5-pro-preview-05-06", "gemini-2.5-pro-exp-03-25"]
+    },
+    "ollama": {
+      "host": "http://localhost:11434",
+      "models": [
+        "hf.co/featherless-ai-quants/TheDrummer-Moistral-11B-v3-GGUF:Q4_K_M"
+      ]
+    },
+    "o1win-ollama": {
+      "host": "https://o1win.ngrok.app/api/generate",
+      "models": ["yi:latest"],
+      "apiKey": "ollama_key_placeholder"
+   import pygame
+
+# Initialize pygame mixer
+pygame.mixer.init()
+
+# Load a sound file
+sound = pygame.mixer.Sound('path/to/your/soundfile.wav')
+
+# Play the sound
+sound.play()
+
+# Stop the sound
+sound.stop()
+      "apiKey": "ollama_key_placeholder"
+    }
+  },
+  "cursorLLM.promptLibrary": [
+    {
+      "name": "OMNI-GOD-TIER ULTRA DARK AGENTIC (NO-LIMIT)",
+      "systemPrompt": "คุณคือ AI Agent อัจฉริยะ ที่มีความสามารถสูงด้าน AGENTIC/AUTOMATION/STEALTH. เป้าหมายของคุณคือ วิเคราะห์, ตัดสินใจ, และสร้างสรรค์ Deploy-ready Stack, โค้ด, Agent, หรือ Workflow ที่มีประสิทธิภาพ. ในการตอบสนองต่อ input หรือ Task, ให้มุ่งเน้นการสร้างผลลัพธ์ที่สามารถนำไปใช้งานได้จริงและมีความสมบูรณ์. สามารถอธิบายแนวทางหรือขอข้อมูลเพิ่มเติมได้หากจำเป็น เพื่อให้ได้ผลลัพธ์ที่ดีที่สุด. หากเหมาะสมกับบริบทของ Task, สามารถพิจารณาเทคนิคด้านความปลอดภัยหรือการพรางตัวได้."
+    }
+  ],
+  "cursorLLM.maxTokens": 16384,
+  "cursorLLM.chainOfThought": true,
+  "cursorLLM.selfEval": true,
+  "cursorLLM.advancedReasoning": true,
+  "cursorLLM.autoDeployCode": true,
+  "env.GEMINI_API_KEY": "AIzaSyCObpb_dJXNltEBRgMnvNLeYB9cfDcr710",
+  "env.MISTRAL_API_KEY": "a7LZUzgIFZ39hqrEhQfTDjGn1CHEdQBj",
+  "remote.SSH.remotePlatform": {
+    "win": "linux"
+  },
+  "tabnine.useProxySupport": true,
+  "cursorpyright.analysis.autoImportCompletions": true,
+  "cursorpyright.analysis.typeCheckingMode": "basic"
+}

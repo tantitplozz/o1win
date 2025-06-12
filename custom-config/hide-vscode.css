@@ -1,0 +1,119 @@
+/* CSS สำหรับซ่อน VS Code แบบเข้มงวด */
+
+/* ซ่อนแท็บ VS Code และทุกองค์ประกอบที่เกี่ยวข้อง */
+[data-tab='vscode'],
+[role='tab'][data-value='vscode'],
+[data-value='vscode'],
+[aria-label*='VS Code'],
+[title*='VS Code'],
+.vs-code-container,
+.vscode-container,
+.monaco-editor-container,
+[id*='vscode'],
+[class*='vscode'],
+iframe[src*='vscode'],
+.VSCode,
+.vs-code,
+button:has(> span:contains('VS Code')),
+div:has(> span:contains('VS Code')),
+a:has(> span:contains('VS Code')) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  position: absolute !important;
+  overflow: hidden !important;
+  z-index: -9999 !important;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(100%) !important;
+}
+
+/* แสดงแท็บ Cursor อย่างเด่นชัด */
+[data-tab='cursor'],
+[role='tab'][data-value='cursor'],
+[data-value='cursor'],
+[aria-label*='Cursor'],
+[title*='Cursor'],
+.cursor-container,
+[id*='cursor'],
+[class*='cursor'] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  overflow: visible !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+}
+
+/* สไตล์ของปุ่ม Cursor */
+button[data-tab='cursor'],
+button[title*='Cursor'],
+button:has(> span:contains('Cursor')) {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: #1f1fcf !important;
+  color: white !important;
+  font-weight: bold !important;
+  border-bottom: 2px solid #1f1fcf !important;
+  padding: 8px 16px !important;
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 100 !important;
+  pointer-events: auto !important;
+}
+
+/* แทนที่ VS Code ด้วย Cursor ในกรณีที่ใช้ class selector */
+.tab-container > .tab:nth-child(2) {
+  display: none !important;
+}
+
+.tab-container > .tab:nth-child(1) {
+  display: flex !important;
+  background-color: #1f1fcf !important;
+  color: white !important;
+}
+
+/* เพิ่มเติมเพื่อจัดการกับ dynamic selectors */
+[class*='TabList'] button:not([data-tab='cursor']) {
+  display: none !important;
+}
+
+[class*='TabList'] button[data-tab='cursor'] {
+  display: flex !important;
+  background-color: #1f1fcf !important;
+  color: white !important;
+}
+
+/* ลบ VS Code iframe */
+iframe {
+  display: none !important;
+}
+
+iframe[src*='cursor'],
+iframe[title*='Cursor'] {
+  display: block !important;
+}
+
+/* ลบตัวเลือก VS Code จากเมนู */
+option[value*='vscode'],
+[role='option'][data-value*='vscode'] {
+  display: none !important;
+}
+
+/* ระดับความสำคัญสูงสุด */
+div[data-tab='vscode'] {
+  display: none !important;
+}
+
+div[data-tab='cursor'] {
+  display: block !important;
+}

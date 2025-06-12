@@ -1,0 +1,45 @@
+{
+  "locales": [
+    {
+      "code": "en",
+      "name": "English",
+      "native": "English"
+    },
+    {
+      "code": "th",
+      "name": "Thai",
+      "native": "ไทย"
+    },
+    {
+      "code": "ja",
+      "name": "Japanese",
+      "native": "日本語"
+    },
+    {
+      "code": "zh-CN",
+      "name": "Simplified Chinese",
+      "native": "简体中文"
+    },
+    {
+      "code": "zh-TW",
+      "name": "Traditional Chinese",
+      "native": "繁體中文"
+    },
+    {
+      "code": "ko",
+      "name": "Korean",
+      "native": "한국어"
+    },
+    {
+      "code": "no",
+      "name": "Norwegian",
+      "native": "Norsk"
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "native": "العربية"
+    }
+  ],
+  "defaultLocale": "th"
+}

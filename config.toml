@@ -1,0 +1,23 @@
+# Config intentionally left minimal to rely on environment variables or image defaults.
+# [llm]
+
+[llm]
+provider = "google"
+model = "gemini-1.5-pro-latest"
+api_key = "AIzaSyD24rUlc8bpek0Bz5DKxXVa9ZjJAkYKgbc"
+
+[core]
+search_api_key = "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"
+
+# Model Context Protocol (MCP) Configuration
+[mcp]
+# No direct configuration for stdio_servers under [mcp] like this: stdio_servers = []
+
+# Stdio Servers - Local processes that communicate via standard input/output
+# Each server in the array is defined with [[mcp.stdio_servers]]
+[[mcp.stdio_servers]]
+name = "langgarh_ollama_service"
+command = "python"
+args = [
+  "mcp_server.py",
+] # Assumes mcp_server.py is in the workspace root and executable

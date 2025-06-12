@@ -1,0 +1,276 @@
+{
+  // === Base Editor Settings - เน้น Auto และลดการถาม ===
+  "files.autoSave": "afterDelay", // บันทึกอัตโนมัติหลังพิมพ์เสร็จครู่หนึ่ง
+  "files.autoSaveDelay": 1000, // Delay 1 วินาที
+  "editor.formatOnSave": true, // จัดรูปแบบเมื่อบันทึก (ถ้า formatter ตั้งไว้)
+  "editor.formatOnPaste": true, // จัดรูปแบบเมื่อวางโค้ด
+  "editor.formatOnType": false, // ปิดการจัดรูปแบบขณะพิมพ์ (อาจจะน่ารำคาญ)
+  "editor.linkedEditing": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.eol": "\n",
+  "editor.minimap.enabled": true,
+  "editor.rulers": [88, 100, 120], // 88 สำหรับ Black (Python)
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.closeOnFileDelete": true, // ปิด editor tab อัตโนมัติเมื่อไฟล์ถูกลบ
+  "explorer.confirmDelete": false, // ไม่ต้องถามยืนยันเมื่อลบไฟล์
+  "explorer.confirmDragAndDrop": false, // ไม่ต้องถามยืนยันเมื่อลากวาง
+
+  // === Security - ลดการป้องกัน (มีความเสี่ยงสูง) ===
+  "security.workspace.trust.enabled": false, // ปิด Workspace Trust (เสี่ยงมาก)
+  "security.workspace.trust.untrustedFiles": "open", // เปิดไฟล์ที่ไม่น่าเชื่อถือโดยไม่ถาม
+  "security.promptForLocalFileProtocolHandling": false, // ปิดการถามเมื่อเปิด local file protocol
+
+  // === Terminal - เน้นความสะดวก ===
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:PATH};${workspaceFolder}/node_modules/.bin"
+  },
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": { "source": "PowerShell", "icon": "terminal-powershell" },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": { "source": "Git Bash" }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash", // ปิดเสียงเตือนใน terminal
+  "terminal.integrated.copyOnSelection": true, // คัดลอกอัตโนมัติเมื่อเลือกข้อความใน terminal
+
+  // === Code Runner - รันใน Docker (เหมือนเดิม แต่เน้นว่าต้องมั่นใจใน image) ===
+  "code-runner.runInTerminal": true,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.showExecutionMessage": false, // ไม่ต้องแสดงข้อความ "Running..."
+  "code-runner.executorMap": {
+    "javascript": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app node:latest node \"${fileBasename}\"",
+    "python": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app python:latest python3 \"${fileBasename}\"",
+    "typescript": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app node:latest npx ts-node \"${fileBasename}\"",
+    "go": "docker run --rm -v \"${fileDirname}\":/usr/src/go/src/app -w /usr/src/go/src/app golang:latest go run \"${fileBasename}\"",
+    "java": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app openjdk:latest java \"${fileBasename}\"",
+    "php": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app php:latest php \"${fileBasename}\"",
+    "rust": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app rust:latest sh -c \"rustc ${fileBasename} && ./${fileBasenameNoExtension}\"",
+    "c": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app gcc:latest sh -c \"gcc ${fileBasename} -o ${fileBasenameNoExtension} && ./${fileBasenameNoExtension}\"",
+    "cpp": "docker run --rm -v \"${fileDirname}\":/usr/src/app -w /usr/src/app gcc:latest sh -c \"g++ ${fileBasename} -o ${fileBasenameNoExtension} && ./${fileBasenameNoExtension}\""
+  },
+
+  // === Formatting & Linting on Save - เน้น Auto Fix ===
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit", // พยายามแก้ไขทุกอย่างที่ทำได้
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.pylint": "explicit",
+    "source.fixAll.prettier": "explicit",
+    "source.fixAll.stylelint": "explicit", // เพิ่ม Stylelint ถ้าใช้
+    "source.fixAll.markdownlint": "explicit" // เพิ่ม Markdownlint ถ้าใช้
+  },
+
+  // === Language Specific Settings - เน้น Auto และ Best Practices ===
+  // --- Python ---
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit", // isort
+      "source.fixAll.pylint": "explicit"
+    }
+  },
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.fixAll": ["source.unusedImports"], // ลองเพิ่มการลบ unused imports อัตโนมัติ (Pylance)
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true, // Lint ขณะบันทึก
+  "python.linting.pylintArgs": [
+    "--disable=C0114",
+    "--disable=C0115",
+    "--disable=C0116", // No docstrings
+    "--disable=R0903", // too-few-public-methods
+    "--disable=W0511", // TODO, FIXME comments
+    "--max-line-length=88"
+  ],
+  "python.sortImports.args": ["--profile", "black"],
+  "python.formatting.provider": "none",
+  "python.testing.pytestEnabled": true, // เปิดใช้งาน Pytest โดย default
+  "python.testing.unittestEnabled": false,
+  "python.testing.autoTestDiscoverOnSaveEnabled": "all", // ค้นหา test อัตโนมัติเมื่อบันทึก
+
+  // --- JavaScript & TypeScript ---
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always", // อัปเดต import อัตโนมัติเมื่อย้ายไฟล์ JS/TS
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // --- Other Languages ---
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": { "source.organizeImports": "explicit" }
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.formatOnSave": true
+  },
+
+  // === Prettier ===
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always",
+  "prettier.requireConfig": false, // ไม่จำเป็นต้องมีไฟล์ config ของ Prettier ในโปรเจค
+  "prettier.ignorePath": ".gitignore", // ใช้ .gitignore สำหรับ Prettier ด้วย
+
+  // === Git - เน้น Auto และลดการถาม ===
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.autoStash": true, // Stash อัตโนมัติเมื่อ pull ถ้ามี local changes
+  "git.pruneOnFetch": true, // ลบ remote-tracking branches ที่ไม่มีอยู่จริงบน remote
+  "git.postCommitCommand": "sync", // ลอง Sync (pull then push) อัตโนมัติหลัง commit (อาจจะต้องตั้งค่า credential helper ให้ดี)
+  "git.ignoreLimitWarning": true,
+
+  // === Workbench & Explorer - เน้นความสะดวก ===
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.startupEditor": "newUntitledFile", // เปิดไฟล์ใหม่เมื่อเริ่มโปรแกรม
+  "breadcrumbs.enabled": true,
+  "workbench.commandPalette.history": 50,
+  "workbench.list.automaticKeyboardNavigation": true,
+  "workbench.tree.indent": 10, // เพิ่มการเยื้องใน Explorer
+  "explorer.autoReveal": true, // เปิดไฟล์ที่ active ใน Explorer อัตโนมัติ
+
+  // === File Excludes (เหมือนเดิม) ===
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.venv": true,
+    "**/.tox": true,
+    "**/*.egg-info": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/*.pyc": true,
+    "**/__pycache__": true,
+    "**/.idea": true,
+    "**/.vscode": false
+  },
+
+  // === Extensions - เปิด Auto Update และฟีเจอร์อื่นๆ ===
+  "extensions.autoUpdate": true,
+  "extensions.autoCheckUpdates": true,
+  "extensions.ignoreRecommendations": false, // ยังคงแสดง recommendations
+  // Docker Extension
+  "docker.explorerRefreshInterval": 5000, // รีเฟรช Docker explorer บ่อยขึ้น
+  "docker.truncateLongIds": false, // แสดง ID เต็มๆ ของ Docker objects
+
+  // === Cursor Specific Settings (เหมือนเดิม) ===
+  "cursor.codeLens.references": true,
+  "cursor.codeLens.vcs": true,
+  "cursor.autoShowSingleOccurrenceHighlights": true,
+  "cursor.chat.autoScroll": true,
+  "cursor.features.autoEnable": {
+    "debug": true,
+    "sourceControl": true,
+    "terminal": true
+  },
+  "cursor.statusBar.enabled": true,
+  "cursor.experimental.autoEnableLineHighlights": true,
+
+  // === AI Tools - เน้น Auto (ถ้ามี settings) ===
+  "tabnine.experimentalAutoImports": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  // เพิ่มการตั้งค่าสำหรับ AI tools อื่นๆ ที่คุณใช้อาจจะต้องดูจาก документация ของ tool นั้นๆ
+
+  // === Other existing user settings (เหมือนเดิม) ===
+  "vsintellicode.features.python.deepLearning": "enabled",
+  "redhat.telemetry.enabled": true, // ปิดได้ถ้าไม่ต้องการส่ง telemetry
+  "diffEditor.ignoreTrimWhitespace": false,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "python.analysis.typeCheckingMode": "basic", // หรือ "strict" ถ้าต้องการเข้มงวดมาก
+  "github.copilot.advanced": {},
+  "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "accessibility.signals.terminalBell": {
+    "sound": "off"
+  },
+  "terminal.integrated.enableVisualBell": false,
+  "cursor.general.globalCursorIgnoreList": []
+}

@@ -1,0 +1,176 @@
+{
+  "app": {
+    "title": "OpenHands AI",
+    "description": "ผู้ช่วย AI แบบครบวงจรสำหรับการพัฒนาซอฟต์แวร์",
+    "welcome": "ยินดีต้อนรับสู่ OpenHands"
+  },
+  "auth": {
+    "signin": "เข้าสู่ระบบ",
+    "signout": "ออกจากระบบ",
+    "username": "ชื่อผู้ใช้",
+    "password": "รหัสผ่าน",
+    "remember": "จดจำฉัน"
+  },
+  "navigation": {
+    "dashboard": "แดชบอร์ด",
+    "workspace": "พื้นที่ทำงาน",
+    "projects": "โปรเจกต์",
+    "settings": "ตั้งค่า",
+    "help": "ช่วยเหลือ"
+  },
+  "actions": {
+    "create": "สร้าง",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "search": "ค้นหา",
+    "run": "รัน",
+    "stop": "หยุด",
+    "restart": "เริ่มต้นใหม่",
+    "upload": "อัปโหลด",
+    "download": "ดาวน์โหลด"
+  },
+  "chat": {
+    "placeholder": "พิมพ์คำถามหรือคำสั่งที่นี่...",
+    "send": "ส่ง",
+    "clear": "ล้างการสนทนา",
+    "history": "ประวัติการสนทนา",
+    "thinking": "กำลังคิด...",
+    "agent_thinking": "AI กำลังคิด...",
+    "agent_running": "AI กำลังทำงาน...",
+    "empty": "เริ่มต้นการสนทนากับ OpenHands AI"
+  },
+  "workspace": {
+    "files": "ไฟล์",
+    "explorer": "สำรวจไฟล์",
+    "new_file": "ไฟล์ใหม่",
+    "new_folder": "โฟลเดอร์ใหม่",
+    "upload_files": "อัปโหลดไฟล์",
+    "no_files": "ไม่มีไฟล์ในโฟลเดอร์นี้"
+  },
+  "projects": {
+    "new": "สร้างโปรเจกต์ใหม่",
+    "import": "นำเข้าโปรเจกต์",
+    "name": "ชื่อโปรเจกต์",
+    "description": "คำอธิบาย",
+    "created": "สร้างเมื่อ",
+    "updated": "อัปเดตเมื่อ",
+    "language": "ภาษา",
+    "framework": "เฟรมเวิร์ค"
+  },
+  "settings": {
+    "general": "ทั่วไป",
+    "appearance": "รูปลักษณ์",
+    "language": "ภาษา",
+    "theme": "ธีม",
+    "light": "สว่าง",
+    "dark": "มืด",
+    "system": "ตามระบบ",
+    "account": "บัญชี",
+    "integrations": "การเชื่อมต่อ",
+    "api_keys": "API Keys",
+    "advanced": "ขั้นสูง"
+  },
+  "languages": {
+    "en": "อังกฤษ",
+    "th": "ไทย",
+    "ja": "ญี่ปุ่น",
+    "zh-CN": "จีนตัวย่อ",
+    "zh-TW": "จีนตัวเต็ม",
+    "ko": "เกาหลี",
+    "no": "นอร์เวย์",
+    "ar": "อาหรับ"
+  },
+  "terminal": {
+    "title": "เทอร์มินัล",
+    "new": "เทอร์มินัลใหม่",
+    "clear": "ล้างเทอร์มินัล",
+    "running": "กำลังทำงาน...",
+    "stopped": "หยุดทำงานแล้ว"
+  },
+  "editor": {
+    "save": "บันทึก",
+    "format": "จัดรูปแบบ",
+    "find": "ค้นหา",
+    "replace": "แทนที่",
+    "font_size": "ขนาดตัวอักษร",
+    "word_wrap": "ตัดคำ",
+    "line_numbers": "แสดงเลขบรรทัด",
+    "cursor": "Cursor",
+    "vscode": "VS Code",
+    "change_editor": "เปลี่ยนเครื่องมือแก้ไขโค้ด",
+    "cursor_description": "แก้ไขโค้ดด้วย Cursor Editor ที่ทันสมัย",
+    "vscode_description": "แก้ไขโค้ดด้วย Visual Studio Code"
+  },
+  "errors": {
+    "general": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง",
+    "not_found": "ไม่พบหน้าที่คุณกำลังค้นหา",
+    "unauthorized": "คุณไม่มีสิทธิ์เข้าถึงหน้านี้",
+    "connection": "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้"
+  },
+  "modals": {
+    "confirm": {
+      "title": "ยืนยัน",
+      "message": "คุณแน่ใจหรือไม่?",
+      "ok": "ตกลง",
+      "cancel": "ยกเลิก"
+    },
+    "delete": {
+      "title": "ยืนยันการลบ",
+      "message": "คุณแน่ใจหรือไม่ว่าต้องการลบ? การกระทำนี้ไม่สามารถย้อนกลับได้",
+      "confirm": "ลบ",
+      "cancel": "ยกเลิก"
+    }
+  },
+  "notifications": {
+    "success": "สำเร็จ!",
+    "error": "ข้อผิดพลาด!",
+    "info": "ข้อมูล",
+    "warning": "คำเตือน"
+  },
+  "time": {
+    "now": "เมื่อสักครู่",
+    "minute": "นาทีที่แล้ว",
+    "minutes": "นาทีที่แล้ว",
+    "hour": "ชั่วโมงที่แล้ว",
+    "hours": "ชั่วโมงที่แล้ว",
+    "day": "วันที่แล้ว",
+    "days": "วันที่แล้ว"
+  },
+  "ai": {
+    "thinking": "AI กำลังคิด...",
+    "running": "AI กำลังทำงาน...",
+    "error": "AI ไม่สามารถตอบคำถามได้ในขณะนี้ โปรดลองอีกครั้ง",
+    "suggestions": "คำแนะนำ",
+    "help": "AI สามารถช่วยคุณได้ในหลายๆ ด้าน เช่น:",
+    "help_items": [
+      "สร้างโค้ดหรือโปรเจกต์ใหม่",
+      "แก้ไขหรือปรับปรุงโค้ดที่มีอยู่",
+      "ค้นหาและแก้ไขบั๊ก",
+      "อธิบายการทำงานของโค้ด",
+      "แนะนำวิธีการปรับปรุงประสิทธิภาพ",
+      "ช่วยในการทดสอบและการ Debug"
+    ]
+  },
+  "application": {
+    "title": "แอปพลิเคชัน",
+    "language": "ภาษา",
+    "select_language": "เลือกภาษา",
+    "select_language_description": "เลือกภาษาที่คุณต้องการใช้สำหรับ UI",
+    "theme": "ธีม",
+    "select_theme": "เลือกธีม",
+    "select_theme_description": "เลือกธีมที่คุณต้องการใช้สำหรับ UI"
+  },
+  "tabs": {
+    "cursor": "Cursor",
+    "vscode": "VS Code",
+    "editor": "โค้ดเอดิเตอร์",
+    "terminal": "เทอร์มินัล",
+    "browser": "เบราว์เซอร์",
+    "jupyter": "Jupyter",
+    "changes": "การเปลี่ยนแปลง",
+    "settings": "ตั้งค่า"
+  }
+}

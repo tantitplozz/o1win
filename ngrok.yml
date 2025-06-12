@@ -1,0 +1,17 @@
+version: "3"
+# authtoken: YOUR_NGROK_AUTHTOKEN_FROM_DASHBOARD # Replace if you have one
+endpoints:
+  - name: ollama_o1win
+    address: o1win.ngrok.app
+    forwards_to: http://204.12.253.251:8080
+    proto: http
+    request_header:
+      add:
+        Authorization: "Basic d2luOndpbg==" # win:win base64 encoded
+  - name: ollama_chaichana
+    address: chaichanaomg.ngrok.app
+    forwards_to: http://173.208.162.7:8081
+    proto: http
+    request_header:
+      add:
+        Authorization: "Basic d2luOndpbg==" # win:win base64 encoded 

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenHands AI (ภาษาไทย)</title>
+    <meta
+      name="description"
+      content="ผู้ช่วย AI แบบครบวงจรสำหรับการพัฒนาซอฟต์แวร์"
+    />
+
+    <!-- บังคับใช้ Cursor แบบทันที (Inline) -->
+    <script>
+      console.log('===== EXECUTING IMMEDIATE CURSOR ENFORCEMENT =====');
+
+      // ตั้งค่า localStorage ทันที
+      if (window.localStorage) {
+        window.localStorage.setItem('defaultTab', 'cursor');
+        window.localStorage.setItem('editor', 'cursor');
+        window.localStorage.setItem('editorType', 'cursor');
+        window.localStorage.setItem('activeEditor', 'cursor');
+        window.localStorage.setItem('defaultEditor', 'cursor');
+        window.localStorage.setItem('tabsVisible', JSON.stringify(['cursor']));
+
+        // ลบการตั้งค่า VS Code
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.includes('vscode') || key.includes('VSCode'))) {
+            localStorage.removeItem(key);
+          }
+        }
+      }
+
+      // เพิ่ม style ทันที
+      document.write(
+        '<style id="immediate-cursor-style">' +
+          '[data-tab="vscode"], [data-value="vscode"], [title*="VS Code"] { display: none !important; }' +
+          '[data-tab="cursor"], [data-value="cursor"], [title*="Cursor"] { display: flex !important; }' +
+          '</style>'
+      );
+    </script>
+
+    <!-- โหลด direct-replace.js ก่อนทุกไฟล์อื่น -->
+    <script src="/custom/direct-replace.js"></script>
+
+    <!-- เพิ่มฟอนต์ภาษาไทย Sarabun -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- เพิ่ม CSS ซ่อน VS Code (โหลดก่อน) -->
+    <link rel="stylesheet" href="/custom/hide-vscode.css" />
+
+    <!-- สคริปต์บังคับ Cursor แทน VS Code (โหลดก่อน) -->
+    <script src="/custom/override-tabs.js"></script>
+
+    <!-- เพิ่ม CSS สำหรับภาษาไทย -->
+    <link rel="stylesheet" href="/custom/thai-fonts.css" />
+
+    <!-- เพิ่ม CSS สำหรับซ่อน VS Code -->
+    <link rel="stylesheet" href="/custom/no-vscode.css" />
+
+    <!-- สคริปต์บังคับ Cursor แทน VS Code -->
+    <script src="/custom/force-cursor.js"></script>
+
+    <!-- สคริปต์บังคับ Cursor แทน VS Code -->
+    <script>
+      // บังคับให้ใช้ Cursor แทน VS Code
+      window.addEventListener('DOMContentLoaded', () => {
+        // ตั้งค่าใน localStorage
+        if (window.localStorage) {
+          // ตั้งค่า Cursor เป็น editor เริ่มต้น
+          window.localStorage.setItem('defaultTab', 'cursor');
+          window.localStorage.setItem('editor', 'cursor');
+          window.localStorage.setItem('editorType', 'cursor');
+
+          // ปิดการใช้งาน VS Code
+          const tabsConfig = [
+            {
+              type: 'cursor',
+              name: 'Cursor',
+              label: 'Cursor',
+              description: 'แก้ไขโค้ดด้วย Cursor Editor',
+              enabled: true,
+              default: true,
+              logoUrl: '/custom/cursor-logo.svg',
+            },
+          ];
+          window.localStorage.setItem('tabsConfig', JSON.stringify(tabsConfig));
+          window.localStorage.setItem(
+            'tabsVisible',
+            JSON.stringify(['cursor'])
+          );
+
+          console.log('Force set Cursor as default editor');
+        }
+
+        // ลบแท็บ VS Code ออกจาก DOM โดยตรง
+        const vscodeElements = document.querySelectorAll(
+          '[data-tab="vscode"], [title*="VS Code"], [aria-label*="VS Code"]'
+        );
+        vscodeElements.forEach((element) => {
+          element.remove();
+          console.log('Removed VS Code element from DOM');
+        });
+
+        // ค้นหาแท็บที่มีข้อความ VS Code
+        document.querySelectorAll('button, [role="tab"]').forEach((element) => {
+          if (element.textContent && element.textContent.includes('VS Code')) {
+            element.remove();
+            console.log('Removed VS Code tab/button from DOM');
+          }
+        });
+      });
+    </script>
+
+    <!-- สคริปต์บังคับภาษาไทย -->
+    <script src="/custom/force-thai.js"></script>
+
+    <!-- ตรวจสอบว่ามีการโหลด CSS ของ OpenHands -->
+    <script>
+      // ตรวจสอบการโหลด CSS
+      window.addEventListener('DOMContentLoaded', () => {
+        // ตั้งค่าภาษาเริ่มต้นเป็นภาษาไทย
+        if (window.localStorage) {
+          window.localStorage.setItem('locale', 'th');
+
+          // บังคับให้ใช้ภาษาไทย
+          const localeInterval = setInterval(() => {
+            const currentLocale = window.localStorage.getItem('locale');
+            if (currentLocale !== 'th') {
+              window.localStorage.setItem('locale', 'th');
+            } else {
+              clearInterval(localeInterval);
+            }
+          }, 500);
+
+          // เพิ่มภาษาไทยเข้าไปในรายการภาษา
+          try {
+            const locales = JSON.parse(
+              window.localStorage.getItem('locales') || '[]'
+            );
+            if (!locales.find((l) => l.code === 'th')) {
+              locales.push({ code: 'th', name: 'ไทย', native: 'ไทย' });
+              window.localStorage.setItem('locales', JSON.stringify(locales));
+            }
+          } catch (e) {
+            console.error('Error adding Thai language:', e);
+          }
+
+          // ตั้งค่า Cursor เป็น editor เริ่มต้น
+          try {
+            window.localStorage.setItem('defaultTab', 'cursor');
+            window.localStorage.setItem('editor', 'cursor');
+            window.localStorage.setItem('editorType', 'cursor');
+            window.localStorage.setItem('activeEditor', 'cursor');
+            window.localStorage.setItem('defaultEditor', 'cursor');
+            window.localStorage.setItem(
+              'tabsVisible',
+              JSON.stringify(['cursor'])
+            );
+            console.log('Set Cursor as default editor');
+          } catch (e) {
+            console.error('Error setting Cursor as default editor:', e);
+          }
+        }
+
+        // ตั้งค่าฟอนต์ให้กับ body
+        document.body.style.fontFamily =
+          "'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+        // ตั้งค่า favicon
+        const favicon =
+          document.querySelector("link[rel*='icon']") ||
+          document.createElement('link');
+        favicon.type = 'image/x-icon';
+        favicon.rel = 'shortcut icon';
+        favicon.href = '/favicon.ico';
+        document.getElementsByTagName('head')[0].appendChild(favicon);
+
+        // เพิ่ม style เพื่อซ่อน VS Code
+        const style = document.createElement('style');
+        style.textContent = `
+          /* ซ่อน VS Code */
+          [data-tab="vscode"], [data-value="vscode"], [title*="VS Code"], button:has(> span:contains("VS Code")) {
+            display: none !important;
+          }
+          
+          /* เน้น Cursor */
+          [data-tab="cursor"], [data-value="cursor"], [title*="Cursor"] {
+            display: block !important;
+            font-weight: bold !important;
+          }
+        `;
+        document.head.appendChild(style);
+      });
+
+      // เพิ่มภาษาไทยเข้าไปในรายการภาษาหลังจากโหลดหน้าเว็บเสร็จสมบูรณ์
+      window.addEventListener('load', () => {
+        // ตรวจสอบและเพิ่มภาษาไทยลงในเมนู
+        setTimeout(() => {
+          // ค้นหาเมนูภาษา
+          const languageMenu = document.querySelector('[role="listbox"]');
+          if (languageMenu) {
+            // ตรวจสอบว่ามีภาษาไทยหรือไม่
+            const hasThaiOption = Array.from(languageMenu.children).some(
+              (option) => option.textContent.includes('ไทย')
+            );
+
+            // ถ้าไม่มีภาษาไทย ให้เพิ่มเข้าไป
+            if (!hasThaiOption) {
+              const thaiOption = document.createElement('div');
+              thaiOption.setAttribute('role', 'option');
+              thaiOption.textContent = 'ไทย';
+              thaiOption.className = Array.from(
+                languageMenu.children
+              )[0].className;
+              thaiOption.addEventListener('click', () => {
+                window.localStorage.setItem('locale', 'th');
+                window.location.reload();
+              });
+
+              // เพิ่มเข้าไปในเมนู
+              languageMenu.appendChild(thaiOption);
+            }
+          }
+
+          // กำหนด Cursor เป็น editor เริ่มต้น
+          window.localStorage.setItem('defaultTab', 'cursor');
+          window.localStorage.setItem('editor', 'cursor');
+          window.localStorage.setItem('editorType', 'cursor');
+          window.localStorage.setItem('activeEditor', 'cursor');
+          window.localStorage.setItem('defaultEditor', 'cursor');
+          window.localStorage.setItem(
+            'tabsVisible',
+            JSON.stringify(['cursor'])
+          );
+        }, 2000);
+      });
+    </script>
+
+    <!-- เพิ่มสคริปต์ภาษาไทย -->
+    <script src="/custom/add-thai-language.js" defer></script>
+
+    <!-- สคริปต์บังคับ Cursor -->
+    <script>
+      // ฟังก์ชันเปลี่ยน Editor เป็น Cursor
+      function forceCursorEditor() {
+        // ตรวจสอบและคลิกที่แท็บ Cursor
+        const tabElements = document.querySelectorAll('[role="tab"]');
+        for (const tab of tabElements) {
+          if (tab.textContent.includes('Cursor')) {
+            tab.click();
+            console.log('Clicked on Cursor tab');
+            break;
+          }
+        }
+
+        // ซ่อนแท็บ VS Code ถ้ามี
+        const vscodeTab = Array.from(
+          document.querySelectorAll('[role="tab"]')
+        ).find((tab) => tab.textContent.includes('VS Code'));
+        if (vscodeTab) {
+          vscodeTab.style.display = 'none';
+          console.log('Hid VS Code tab');
+        }
+
+        // บังคับให้ใช้ Cursor
+        if (window.localStorage) {
+          window.localStorage.setItem('defaultTab', 'cursor');
+          window.localStorage.setItem('editor', 'cursor');
+          window.localStorage.setItem('editorType', 'cursor');
+          window.localStorage.setItem('activeEditor', 'cursor');
+          window.localStorage.setItem('defaultEditor', 'cursor');
+          window.localStorage.setItem(
+            'tabsVisible',
+            JSON.stringify(['cursor'])
+          );
+        }
+      }
+
+      // รันฟังก์ชันเมื่อโหลดหน้าเว็บ
+      window.addEventListener('load', () => {
+        setTimeout(forceCursorEditor, 1000);
+        setTimeout(forceCursorEditor, 3000);
+        setTimeout(forceCursorEditor, 5000);
+      });
+
+      // สังเกตการณ์การเปลี่ยนแปลง DOM
+      const observer = new MutationObserver(() => {
+        forceCursorEditor();
+      });
+
+      // เริ่มสังเกตการณ์เมื่อโหลดหน้าเว็บเสร็จ
+      window.addEventListener('load', () => {
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- OpenHands จะใส่เนื้อหาในที่นี่ -->
+    <div id="root"></div>
+
+    <!-- สคริปต์เพิ่มเติมสำหรับการปรับแต่ง UI -->
+    <script>
+      // เพิ่มคลาส thai-ui เมื่อโหลดหน้าเว็บเสร็จสมบูรณ์
+      window.addEventListener('load', () => {
+        document.body.classList.add('thai-ui');
+
+        // ปรับขนาดตัวอักษรในช่องแชทให้อ่านง่ายสำหรับภาษาไทย
+        setTimeout(() => {
+          const chatMessages = document.querySelectorAll(
+            '.chat-message-content'
+          );
+          chatMessages.forEach((msg) => {
+            msg.style.lineHeight = '1.6';
+            msg.style.fontSize = '16px';
+          });
+
+          // ปรับขนาดของช่องข้อความ input
+          const inputField = document.querySelector('.chat-input-textarea');
+          if (inputField) {
+            inputField.style.lineHeight = '1.6';
+            inputField.style.paddingTop = '10px';
+          }
+        }, 1000);
+
+        // เปลี่ยนแท็บเริ่มต้นเป็น Cursor
+        setTimeout(() => {
+          // ค้นหาแท็บ Cursor และคลิก
+          const cursorTab = Array.from(
+            document.querySelectorAll('button')
+          ).find((button) => button.textContent.includes('Cursor'));
+          if (cursorTab) {
+            cursorTab.click();
+            console.log('Switched to Cursor tab');
+          }
+
+          // ซ่อนแท็บ VS Code ถ้ามี
+          const vscodeButtons = Array.from(
+            document.querySelectorAll('button')
+          ).filter(
+            (button) =>
+              button.textContent.includes('VS Code') ||
+              button.textContent.includes('VSCode')
+          );
+          vscodeButtons.forEach((button) => {
+            button.style.display = 'none';
+            console.log('Hid VS Code button');
+          });
+
+          // เพิ่ม CSS ซ่อน VS Code อีกครั้ง
+          const style = document.createElement('style');
+          style.textContent = `
+            [data-tab="vscode"], [title*="VS Code"], button:has(span:contains("VS Code")) {
+              display: none !important;
+            }
+            iframe[src*="vscode"] {
+              display: none !important;
+            }
+            /* เพิ่มแท็บ Cursor */
+            [data-tab="cursor"], [title*="Cursor"] {
+              display: flex !important;
+              visibility: visible !important;
+              background-color: #1F1FCF !important;
+              color: white !important;
+            }
+          `;
+          document.head.appendChild(style);
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

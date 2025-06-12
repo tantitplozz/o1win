@@ -1,0 +1,44 @@
+tasks:
+  - id: multi_llm_task
+    description: "ส่งคำสั่งให้ LLM ทั้งสาม"
+    uses: http.request
+    with:
+      method: POST
+      url: http://localhost:8000/llm/multi-llm
+      headers:
+        Content-Type: application/json
+      body:
+        prompt: "{{ input.prompt }}"
+        models: ["dolphin", "yi", "mythomax"]
+    
+    # กำหนด output mapping
+    outputs:
+      results: "{{ outputs.response.results }}"
+      
+    # การจัดการ error
+    on_error:
+      retry:
+        max_attempts: 3
+        initial_delay: 1
+        max_delay: 5
+        multiplier: 2
+      
+    # Timeout settings
+    timeout: 60  # 60 seconds timeout
+
+  # Task สำหรับประมวลผลและเปรียบเทียบคำตอบ
+  - id: process_responses
+    description: "ประมวลผลและเปรียบเทียบคำตอบจาก LLM"
+    needs: [multi_llm_task]
+    uses: python
+    with:
+      code: |
+        def process(results):
+            responses = {}
+            for result in results:
+                model = result["model"]
+                response = result["response"]
+                responses[model] = response
+            return responses
+        
+        outputs = process(inputs.results) 
